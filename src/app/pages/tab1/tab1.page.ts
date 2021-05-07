@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { NoticiasService } from 'src/app/services/noticias.service';
+import { Article } from '../interfaces/interfaces';
 
 @Component({
   selector: 'app-tab1',
@@ -7,6 +9,14 @@ import { Component } from '@angular/core';
 })
 export class Tab1Page {
 
-  constructor() {}
+  public articles: Article[] = [];
+
+  constructor(private noticias: NoticiasService) {
+    this.noticias.getTopHeadlines().subscribe(resp => {
+      console.log(resp.articles);
+
+      this.articles.push(...resp.articles);
+    })
+  }
 
 }
