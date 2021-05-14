@@ -8,5 +8,7 @@
   
   <ion-card-content>
     {{ noticia.content }}
+    <ion-button>{{ noticia.publishedAt | date: 'shortDate' }}</ion-button>
   </ion-card-content>
+  
 </ion-card>
