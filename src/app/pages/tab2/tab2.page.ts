@@ -37,10 +37,24 @@ export class Tab2Page implements AfterViewInit, OnInit {
     
   }
 
-  cargarNoticias(category: string) {
+  cargarNoticias(category: string, event?) {
     this.service.getTopHeadlinesCategory(category)
-    .subscribe(resp => {      
-      this.noticias.push(...resp.articles)      
+    .subscribe(response => {      
+      if (response.articles.length === 0) {
+        event.target.disabled = true;
+        event.target.complete();
+      }
+
+      this.noticias.push(...response.articles);
+
+      if (event) {
+        event.target.complete();
+      }      
     })
+  }
+
+  loadData(event) {
+    this.cargarNoticias(null, event);
+    // console.log(event);
   }
 }

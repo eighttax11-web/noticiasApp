@@ -12,11 +12,27 @@ export class Tab1Page {
   public articles: Article[] = [];
 
   constructor(private noticias: NoticiasService) {
-    this.noticias.getTopHeadlines().subscribe(resp => {
-      console.log(resp.articles);
+    this.cargarNoticias();
+  }
 
-      this.articles.push(...resp.articles);
+  cargarNoticias(event?) {
+    this.noticias.getTopHeadlines().subscribe(response => {
+
+      if (response.articles.length === 0) {
+        event.target.disabled = true;
+        event.target.complete();
+      }
+
+      this.articles.push(...response.articles);
+
+      if (event) {
+        event.target.complete();
+      }
     })
   }
 
+  loadData(event) {
+    this.cargarNoticias(event);
+    // console.log(event);
+  }
 }
