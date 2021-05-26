@@ -4,6 +4,13 @@
   <ion-card-header>
     <ion-card-subtitle>{{ noticia.author }}</ion-card-subtitle>
     <ion-card-title>{{ noticia.title }}</ion-card-title>
+
+    <div class="noticias-more">
+      <ion-button fill="clear" (click)="presentActionSheet()">
+        <ion-icon name="ellipsis-vertical-outline"></ion-icon>
+      </ion-button>
+    </div>
+
   </ion-card-header>
   
   <ion-card-content>
