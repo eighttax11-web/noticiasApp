@@ -35,7 +35,8 @@ export class LocalStorageService {
   }
 
   borrarNoticia(noticia: Article) {
-    
+    this.noticias = this.noticias.filter( n => n.title !== noticia.title );
+    this.storage.set('Favoritos', this.noticias );
   }
 
   async cargarFavoritos() {
